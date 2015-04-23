@@ -25,6 +25,19 @@ describe('ListGroup', function () {
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(items[0], 'list-group-item'));
   });
 
+  it('Should support a single "ListGroupItem" child contained in an array', function () {
+    let child = [<ListGroupItem key={42}>Only Child in array</ListGroupItem>];
+    let instance = ReactTestUtils.renderIntoDocument(
+      <ListGroup>
+        {child}
+      </ListGroup>
+    );
+
+    let items = ReactTestUtils.scryRenderedComponentsWithType(instance, ListGroupItem);
+
+    assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(items[0], 'list-group-item'));
+  });
+
   it('Should output a "ul" when single "ListGroupItem" child is a list item', function () {
     let instance = ReactTestUtils.renderIntoDocument(
       <ListGroup>
